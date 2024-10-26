@@ -1,0 +1,85 @@
+//encryption,decrytion,Hashing
+
+ bcrypt = blowfish algorithm use garxa // semester project ma yo algorithm dhekhauda hunxa.
+  
+  npm i bcrypt     
+  npm i @types/bcrypt -D                  // for hashing
+
+
+ // pseudo code for Login 
+ user le login garda email ra password dinxa tes paxi ko logic
+
+does any user exist with above email?
+
+if No:
+Error("user doesn't exist with above email")
+
+if Yes:
+
+check password?    //  bcrypt.compareSync()
+
+if No:
+
+Error("Password didn't match")
+
+if Yes:
+
+token generate && response ma token pathaidiney.  //token ko lagi chai hami jsonwebtoken use garxau
+
+
+//json web token
+
+npm i jsonwebtoken
+npm i @types/jsonwebtoken -D
+
+
+//Error Handling try catch of better way, try catch garda ni hunxa but dheraii methods haru hunxan
+so tyo puraii ma try catch garda time dheraii waste hunxa tesko alternative chai services folder ma code lekheko xa.
+
+
+//Admin Seeder
+yesto process kunai pani project kholne bitikaii database data entry garinxa tyo lai Seeding vanenxa.
+seeder folder vitra adminSeeder file banako xau tyo function chai app.ts ma export gareko xau.
+
+
+//Middleware
+
+middleware chai bich ko agent ho jasle keii action garnu vanda bich ma checking garxa.
+middle ma next() invoke va ko hunxa but controller ma chai next() hudaina.
+example: import {Request,Response,NextFunction} from "express" yesari NextFunction ni import va ko hunxa.
+
+
+//multer middleware
+
+npm i multer
+npm i @types/multer -D
+
+
+//Relations on DB Tables
+
+database ko entry file ma jane Connections.ts ma
+
+User.hasMany(Product)
+Product.belongsTo(User)
+ 
+ yo code le User model ra Product model ma relation banauxa.
+ Product model ma foreignkey banuxa UserId vanera.
+
+yo tala ko code chai UserId ko name change garna lai matra ho nagarda ni hunxa.
+ User.hasMany(Product,{foreignKey:"userId"})
+Product.belongsTo(User,{foreignKey:"userId"}) 
+
+userId ko value ko lagi chai User table ko admin ko id pass garidine
+
+
+//cloudinary , AWS , s3 bucket ,Digital ocean spaces => yo sabai hosting provider hun.
+
+yedi hami lai aafno server ma store garna maan xain but aru le bankao server ma keii store kinera tya rakna maan xa vane
+cloudinary,AWS ko s3bucket ,digital oceans le yo service provide garxa.
+yeni haru vaneko hamro server ko  photo save files haru cloud ma save garxan yedi hami le xuttai 
+raknu xa image ra files haru vanepaxi yinu haru use garda huxa sabaii premium hunxan but cloudnary le chai 512 mb free dinxa.
+
+// Add to cart
+
+MYSQL ma chai xuttai table banaunu parxa but moongoose ma chai table banaunu pardain aadd cart ko lagi kina ki moongoose
+le chai Array support garxa.(SQL  ko postgresql le ni arry support garxa.)

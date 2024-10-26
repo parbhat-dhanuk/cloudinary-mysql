@@ -1,0 +1,141 @@
+// STEP 1
+
+npm init -y
+npm i express
+npm i nodemon
+npm i typescript --save-dev
+npm i @types/express --save-dev
+npm i @types/node --save-dev
+npx tsc --init
+
+// STEP 2
+
+tsconfig.json
+
+rootDir = "src"
+outDir = "build"
+
+//uncomment these lines from tsconfig.json
+
+"experimentalDecorators": true, 
+"emitDecoratorMetadata": true, 
+
+// STEP 3
+
+Make the file app.js in src
+
+import express , {Application,Request,Response} from "express"
+
+const app:Application=express()
+const port:number = 3000
+
+app.get("/",(req:Request,res:Response)=>{
+    res.send("Hello world")
+})
+
+app.listen (port,()=>{
+    console.log("Running in port",port)
+})
+
+
+// STEP 4
+
+npm i tsc-node
+
+// make file nodemon.json
+
+{
+    "watch" : ["src"],
+
+    "ext"  : ".ts,.js" ,
+
+    "ignore" : [] ,
+
+    "exec" :"npx ts-node src/app.ts"
+
+}
+
+ //  package.json
+
+ "script"
+
+    "start" :"npx nodemon"
+
+
+   // STEP 5
+
+    npm i rimraf --save-dev
+
+    package.json
+
+    "script"
+    
+    "build" :"rimraf ./build && tsc "
+
+
+   // STEP 6
+
+    npm i dotenv
+
+    // make .env file
+
+    DB_USERNAME = root   //"root" yesari ni lekna skinxa
+
+    DB_PASSWORD = ""
+    
+    DB_NAME = "database ko name"
+
+    DB_HOST = 127.0.0.1
+
+    DB_PORT = 3306
+
+
+   // STEP 7
+
+    npm i sequelize mysql2
+
+    npm i sequelize-typescript
+
+
+   // src ma gayera database folder banaune ani tyo vitra  connection.ts file banayera tala ko code type garne
+
+    import {Sequelize} from "sequelize-typescript"
+
+const sequelize= new Sequelize({
+ database:process.env.DB_NAME,
+ dialect:"mysql",
+ username:process.env.DB_USERNAME,
+ password:process.env.DB_PASSWORD,
+ host:process.env.DB_HOST,
+ port:Number(process.env.DB_PORT),
+
+ models:[__dirname + "/models"]
+})
+
+sequelize.authenticate()
+.then(()=>{
+    console.log("connected")
+}).catch((err)=>{
+console.log(err)
+})
+
+sequelize.sync({force:false}).then(()=>{
+ console.log("synced !!!")
+})
+
+export default sequelize
+
+
+// app.ts file ma jane ani tala ko code type garne
+
+import * as dotenv from "dotenv"
+dotenv.config()
+
+import './database/connection'
+
+// Database folder vitra naya models folder banaune..
+// Finally Xampp kholne Apache ra Mysql on garne ra VsCode ko Terminal ma npm start hanera Check garne...
+
+
+
+
