@@ -27,7 +27,7 @@ class ProductController{
 
        // Upload image to Cloudinary
        const uploadResult = await cloudinary.uploader.upload(file.path,{
-         folder:'Mern'
+         folder:'mern'
        });
        if(!productName||!productDescription||!productPrice||!productTotalStockQty||!categoryId){
          res.status(400).json({
@@ -179,7 +179,7 @@ class ProductController{
    
          // Upload new image to Cloudinary
          const uploadResult = await cloudinary.uploader.upload(file.path, {
-           folder: 'parbhat'
+           folder: 'mern'
          });
    
          imageUrl = uploadResult.secure_url;
